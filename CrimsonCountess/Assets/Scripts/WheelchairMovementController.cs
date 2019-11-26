@@ -21,7 +21,7 @@ public class WheelchairMovementController : MonoBehaviour
 
     //These values make the wheelchair controllable
     float speedReducer = 0.005f;
-    float speedIncreaser = 10f;
+    float speedIncreaser = 30f;
 
     void Start()
     {
