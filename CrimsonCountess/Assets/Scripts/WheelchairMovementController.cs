@@ -23,6 +23,8 @@ public class WheelchairMovementController : MonoBehaviour
     float speedReducer = 0.005f;
     float speedIncreaser = 30f;
 
+    int straightLineAssist = 0;
+
     void Start()
     {
         //Set the "previous" rotation values to avoid null references
@@ -63,11 +65,26 @@ public class WheelchairMovementController : MonoBehaviour
     //Determines which wheel is spinning faster and rotates the wheelchair accordingly
     void Rotate()
     {
-        float rotateSpeed = leftWheelSpeed - rightWheelSpeed;
-
-        if (rotateSpeed < 0.05 && rotateSpeed > -0.05)
-            rotateSpeed = 0;
+        float rotateSpeed = StraightLineAssist(leftWheelSpeed, rightWheelSpeed);
 
         transform.Rotate(Vector3.up, rotateSpeed * Time.deltaTime * speedIncreaser);
+    }
+
+    float StraightLineAssist(float leftWheelSpeed, float rightWheelSpeed)
+    {
+        float rotateSpeed = leftWheelSpeed - rightWheelSpeed;
+
+        if (rotateSpeed < 0.05 && rotateSpeed > -0.05 && BothHandsTouching())
+            rotateSpeed = 0;
+
+        return rotateSpeed;
+    }
+
+    bool BothHandsTouching()
+    {
+        if (leftWheel.GetInteractingTouch().tag == "LeftController" && rightWheel.GetInteractingTouch().tag == "RightController")
+            return true;
+        else
+            return false;
     }
 }
