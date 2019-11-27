@@ -52,15 +52,21 @@ public class WheelchairMovementController : MonoBehaviour
     void Move()
     {
         //Forward speed is the average speed of both wheels. This prevents super speed when the wheels are just added together.
-        float forwardSpeed = (leftWheelSpeed + rightWheelSpeed) / 2;
+        float forwardSpeed = Mathf.Clamp(((leftWheelSpeed + rightWheelSpeed) / 2), -3f, 5f);
+        
 
-        transform.Translate(Vector3.forward * forwardSpeed * Time.deltaTime);
+        Vector3 translate = Vector3.forward * forwardSpeed * Time.deltaTime;
+
+        transform.Translate(translate);
     }
 
     //Determines which wheel is spinning faster and rotates the wheelchair accordingly
     void Rotate()
     {
         float rotateSpeed = leftWheelSpeed - rightWheelSpeed;
+
+        if (rotateSpeed < 0.05 && rotateSpeed > -0.05)
+            rotateSpeed = 0;
 
         transform.Rotate(Vector3.up, rotateSpeed * Time.deltaTime * speedIncreaser);
     }

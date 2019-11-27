@@ -160,8 +160,8 @@ MonoBehaviour:
   equalityFidelity: 0.001
   hingePoint: {fileID: 4257840726738367558}
   angleLimits:
-    minimum: -18000
-    maximum: 18000
+    minimum: -1.8e+20
+    maximum: 1.8e+20
   minMaxThresholdAngle: 1
   restingAngle: 0
   forceRestingAngleThreshold: 1
@@ -175,7 +175,7 @@ MonoBehaviour:
   snapToStep: 0
   snapForce: 10
   precisionGrab: 1
-  detachDistance: 1
+  detachDistance: 0.1
   rotationAction: 0
   grabbedFriction: 1
   releasedFriction: 0.5
@@ -510,7 +510,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4257840726466000381}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.228, z: 0}
+  m_LocalPosition: {x: 0, y: 0.044, z: -0.451}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4257840725210886364}
@@ -569,8 +569,8 @@ MonoBehaviour:
   equalityFidelity: 0.001
   hingePoint: {fileID: 4257840726365933395}
   angleLimits:
-    minimum: -18000
-    maximum: 18000
+    minimum: -1.8e+20
+    maximum: 1.8e+20
   minMaxThresholdAngle: 1
   restingAngle: 0
   forceRestingAngleThreshold: 1
@@ -584,7 +584,7 @@ MonoBehaviour:
   snapToStep: 0
   snapForce: 10
   precisionGrab: 1
-  detachDistance: 1
+  detachDistance: 0.1
   rotationAction: 0
   grabbedFriction: 1
   releasedFriction: 0.5
@@ -756,12 +756,7 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 3380982, guid: 4d293c8e162f3874b982baadd71153d2, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 11420968, guid: 4d293c8e162f3874b982baadd71153d2, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d293c8e162f3874b982baadd71153d2, type: 3}
 --- !u!1 &4257840724840735255 stripped
 GameObject:
