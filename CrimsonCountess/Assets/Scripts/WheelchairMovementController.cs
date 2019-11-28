@@ -4,12 +4,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using VRTK.Controllables.ArtificialBased;
+using VRTK;
 
 public class WheelchairMovementController : MonoBehaviour
 {
     [SerializeField] VRTK_ArtificialRotator leftWheel;
     [SerializeField] VRTK_ArtificialRotator rightWheel;
+
+    [SerializeField] Transform leftWheelParent;
+    [SerializeField] Transform rightWheelParent;
+
+    GameObject leftWheelObj;
+    GameObject rightWheelObj;
+
+    [SerializeField] VRTK_InteractGrab leftHandGrab;
+    [SerializeField] VRTK_InteractGrab rightHandGrab;
+
+    bool grabbingLeftWheel;
+    bool grabbingRightWheel;
 
     //Keeps track of what angle the wheel was in the last frame
     float prevLeftWheelAngle;
@@ -20,16 +34,32 @@ public class WheelchairMovementController : MonoBehaviour
     float rightWheelSpeed;
 
     //These values make the wheelchair controllable
-    float speedReducer = 0.005f;
-    float speedIncreaser = 30f;
+    [SerializeField] float speedReducer = 0.01f;
+    [SerializeField] float rotationSpeedIncreaser = 20f;
+
+    float rotationSpeed;
 
     int straightLineAssist = 0;
+
+    /*enum ControllerTouchingWheel
+    {
+        Left,
+        Right,
+        Both,
+        None
+    }*/
 
     void Start()
     {
         //Set the "previous" rotation values to avoid null references
         prevLeftWheelAngle = leftWheel.GetValue();
         prevRightWheelAngle = rightWheel.GetValue();
+
+        leftWheelObj = leftWheelParent.GetChild(0).gameObject;
+        rightWheelObj = rightWheelParent.GetChild(0).gameObject;
+
+        print(leftWheelObj);
+        print(rightWheelObj);
     }
 
     void Update()
@@ -54,10 +84,9 @@ public class WheelchairMovementController : MonoBehaviour
     void Move()
     {
         //Forward speed is the average speed of both wheels. This prevents super speed when the wheels are just added together.
-        float forwardSpeed = Mathf.Clamp(((leftWheelSpeed + rightWheelSpeed) / 2), -3f, 5f);
-        
+        float forwardSpeed = Mathf.Clamp(((leftWheelSpeed + rightWheelSpeed) / 2), -.5f, 1f);
 
-        Vector3 translate = Vector3.forward * forwardSpeed * Time.deltaTime;
+        Vector3 translate = Vector3.back * forwardSpeed * Time.deltaTime;
 
         transform.Translate(translate);
     }
@@ -65,9 +94,9 @@ public class WheelchairMovementController : MonoBehaviour
     //Determines which wheel is spinning faster and rotates the wheelchair accordingly
     void Rotate()
     {
-        float rotateSpeed = StraightLineAssist(leftWheelSpeed, rightWheelSpeed);
-
-        transform.Rotate(Vector3.up, rotateSpeed * Time.deltaTime * speedIncreaser);
+        float rotateSpeed = Mathf.Clamp((StraightLineAssist(leftWheelSpeed, rightWheelSpeed)), -3f, 3f);
+        
+        transform.Rotate(Vector3.up, rotateSpeed * Time.deltaTime * rotationSpeedIncreaser);
     }
 
     float StraightLineAssist(float leftWheelSpeed, float rightWheelSpeed)
@@ -77,14 +106,82 @@ public class WheelchairMovementController : MonoBehaviour
         if (rotateSpeed < 0.05 && rotateSpeed > -0.05 && BothHandsTouching())
             rotateSpeed = 0;
 
+        rotationSpeed = rotateSpeed;
+
         return rotateSpeed;
     }
 
     bool BothHandsTouching()
     {
-        if (leftWheel.GetInteractingTouch().tag == "LeftController" && rightWheel.GetInteractingTouch().tag == "RightController")
+        if (grabbingLeftWheel && grabbingRightWheel)
             return true;
         else
             return false;
     }
+
+    public void OnLeftHandGrab()
+    {
+        GameObject obj = leftHandGrab.GetGrabbedObject();
+
+        if (obj != null)
+        {
+            print("grab" + obj);
+            if (obj == leftWheelObj)
+            {
+                grabbingLeftWheel = true;
+            }
+            else
+            {
+                grabbingLeftWheel = false;
+            }
+        }
+    }
+
+    public void OnLeftHandUnGrab()
+    {
+        GameObject obj = leftHandGrab.GetGrabbedObject();
+
+        if (obj != null)
+        {
+            print("ungrab" + obj);
+            if (obj == leftWheelObj)
+            {
+                grabbingLeftWheel = false;
+            }
+        }
+    }
+
+    public void OnRightHandGrab()
+    {
+        GameObject obj = rightHandGrab.GetGrabbedObject();
+
+        if (obj != null)
+        {
+            print("grab" + obj);
+            if (obj == rightWheelObj)
+            {
+                print("yay righty" + obj);
+                grabbingRightWheel = true;
+            }
+            else
+            {
+                grabbingRightWheel = false;
+            }
+        }
+    }
+
+    public void OnRightHandUnGrab()
+    {
+        GameObject obj = rightHandGrab.GetGrabbedObject();
+
+        if (obj != null)
+        {
+            print("ungrab" + obj);
+            if (obj == rightWheelObj)
+            {
+                grabbingRightWheel = false;
+            }
+        }
+    }
+
 }
