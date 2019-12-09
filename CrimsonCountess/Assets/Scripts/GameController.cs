@@ -4,6 +4,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GameController : MonoBehaviour
 {
@@ -12,13 +13,27 @@ public class GameController : MonoBehaviour
      *      AudioManager script (Will control ambiant audio and piano)
      *      SceneManager script (Will control additave/subtractive scene loading)
     */
+    
+    public static GameController Instance { get; private set; }
+
+
+    #region Events
+
+    public UnityEvent candleGrab;
+
+    #endregion
 
     enum Rooms {RitualRoom, Bathroom, LivingRoom, Library}
     enum RitualSiteItems {Candle, Knife, Book};
 
     void Awake()
     {
-        
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(gameObject);
+
+        SetUpEvents();
     }
 
     void Start()
@@ -113,45 +128,53 @@ public class GameController : MonoBehaviour
 
     #region SingleUseFunctions
 
-    void ExtinguishCandles()
+    void SetUpEvents()
+    {
+        if (candleGrab == null)
+            candleGrab = new UnityEvent();
+    }
+
+    public void ExtinguishCandles()
     {
         //Get all candles in bathroom scene
         //Run their extinguish function
-        //unlock living room
+        //Unlock living room
+
+        candleGrab.Invoke(); //Triggers candleGrab event
     }
 
-    void CandleLit()
+    public void CandleLit()
     {
         //lock bathroom
         //light ritual candle
     }
 
-    void KnifePickedUp()
+    public void KnifePickedUp()
     {
 
     }
 
-    void PaintingCut()
+    public void PaintingCut()
     {
 
     }
 
-    void KeyPickedUp()
+    public void KeyPickedUp()
     {
 
     }
 
-    void BookUnlocked()
+    public void BookUnlocked()
     {
 
     }
 
-    void BookGrabbed()
+    public void BookGrabbed()
     {
 
     }
 
-    void RitualCompleted()
+    public void RitualCompleted()
     {
 
     }
