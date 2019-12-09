@@ -14,7 +14,7 @@ public class GameController : MonoBehaviour
      *      SceneManager script (Will control additave/subtractive scene loading)
     */
     
-    public static GameController Instance { get; private set; }
+    public static GameController instance { get; private set; }
 
 
     #region Events
@@ -28,8 +28,8 @@ public class GameController : MonoBehaviour
 
     void Awake()
     {
-        if (Instance == null)
-            Instance = this;
+        if (instance == null)
+            instance = this;
         else
             Destroy(gameObject);
 
@@ -39,6 +39,12 @@ public class GameController : MonoBehaviour
     void Start()
     {
         UnlockRoom(Rooms.Bathroom);
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown("g"))
+            candleGrab.Invoke();
     }
 
     #region MultiUseFunctions
