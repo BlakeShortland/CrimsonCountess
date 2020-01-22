@@ -10,7 +10,9 @@ using VRTK;
 
 public class WheelchairMovementController : MonoBehaviour
 {
-    [SerializeField] VRTK_ArtificialRotator leftWheel;
+	public VRTK_ControllerEvents controllerEvents;
+
+	[SerializeField] VRTK_ArtificialRotator leftWheel;
     [SerializeField] VRTK_ArtificialRotator rightWheel;
 
     [SerializeField] Transform leftWheelParent;
@@ -41,6 +43,9 @@ public class WheelchairMovementController : MonoBehaviour
 
     int straightLineAssist = 0;
 
+	[SerializeField] float touchpadTouchRecentlyTime = 5;
+	float touchpadTouchTimer = 0;
+
     /*enum ControllerTouchingWheel
     {
         Left,
@@ -49,10 +54,30 @@ public class WheelchairMovementController : MonoBehaviour
         None
     }*/
 
-    void Start()
+	public enum WheelchairTypes
+	{
+		Manual,
+		Electric
+	}
+
+	WheelchairTypes wheelchairType = WheelchairTypes.Manual;
+
+	void Awake()
+	{
+		controllerEvents = (controllerEvents == null ? GetComponent<VRTK_ControllerEvents>() : controllerEvents);
+		if (controllerEvents == null)
+		{
+			VRTK_Logger.Error(VRTK_Logger.GetCommonMessage(VRTK_Logger.CommonMessageKeys.REQUIRED_COMPONENT_MISSING_FROM_GAMEOBJECT, "WheelchairMovementController", "VRTK_ControllerEvents", "the same"));
+			return;
+		}
+
+		controllerEvents.ButtonTwoPressed += ControllerEvents_ButtonTwoPressed;
+	}
+
+	void Start()
     {
-        //Set the "previous" rotation values to avoid null references
-        prevLeftWheelAngle = leftWheel.GetValue();
+		//Set the "previous" rotation values to avoid null references
+		prevLeftWheelAngle = leftWheel.GetValue();
         prevRightWheelAngle = rightWheel.GetValue();
 
         leftWheelObj = leftWheelParent.GetChild(0).gameObject;
@@ -64,24 +89,41 @@ public class WheelchairMovementController : MonoBehaviour
 
     void Update()
     {
-        CalculateWheelSpeed();
-        Move();
-        Rotate();
-    }
+		switch (wheelchairType)
+		{
+			case WheelchairTypes.Manual:
+				CalculateWheelSpeed();
+				MoveManual();
+				RotateManual();
+				break;
 
-    void CalculateWheelSpeed()
-    {
-        //Calculate the speed of each wheel
-        leftWheelSpeed = (leftWheel.GetValue() - prevLeftWheelAngle) / Time.deltaTime * speedReducer;
-        rightWheelSpeed = (rightWheel.GetValue() - prevRightWheelAngle) / Time.deltaTime * speedReducer;
+			case WheelchairTypes.Electric:
+				if(touchpadTouchTimer > 0)
+					MoveElectric();
+				break;
+		}
 
-        //Save the angle of rotation for the next frame's calculation
-        prevLeftWheelAngle = leftWheel.GetValue();
-        prevRightWheelAngle = rightWheel.GetValue();
+		if (controllerEvents.touchpadTouched)
+			touchpadTouchTimer = touchpadTouchRecentlyTime;
+
+		touchpadTouchTimer -= Time.deltaTime;
+	}
+
+	#region ManualWheelchair
+
+	void CalculateWheelSpeed()
+	{
+		//Calculate the speed of each wheel
+		leftWheelSpeed = (leftWheel.GetValue() - prevLeftWheelAngle) / Time.deltaTime * speedReducer;
+		rightWheelSpeed = (rightWheel.GetValue() - prevRightWheelAngle) / Time.deltaTime * speedReducer;
+
+		//Save the angle of rotation for the next frame's calculation
+		prevLeftWheelAngle = leftWheel.GetValue();
+		prevRightWheelAngle = rightWheel.GetValue();
     }
 
     //Determines how fast forwards/backwards to move the wheelchair
-    void Move()
+    void MoveManual()
     {
         //Forward speed is the average speed of both wheels. This prevents super speed when the wheels are just added together.
         float forwardSpeed = Mathf.Clamp(((leftWheelSpeed + rightWheelSpeed) / 2), -.5f, 1f);
@@ -92,7 +134,7 @@ public class WheelchairMovementController : MonoBehaviour
     }
 
     //Determines which wheel is spinning faster and rotates the wheelchair accordingly
-    void Rotate()
+    void RotateManual()
     {
         float rotateSpeed = Mathf.Clamp((StraightLineAssist(leftWheelSpeed, rightWheelSpeed)), -3f, 3f);
         
@@ -184,4 +226,31 @@ public class WheelchairMovementController : MonoBehaviour
         }
     }
 
+	#endregion
+
+	#region ElectricWheelchair
+
+	void MoveElectric()
+	{
+		Vector2 touchpadPosition = controllerEvents.GetTouchpadAxis();
+
+		float forwardSpeed = Mathf.Clamp(touchpadPosition.y, -.5f, 1f);
+		Vector3 translate = Vector3.back * forwardSpeed * Time.deltaTime;
+		transform.Translate(translate);
+
+		float rotateSpeed = Mathf.Clamp(touchpadPosition.x * 3, -3f, 3f);
+		transform.Rotate(Vector3.up, rotateSpeed * Time.deltaTime * rotationSpeedIncreaser);
+	}
+
+	#endregion
+
+	void ControllerEvents_ButtonTwoPressed(object sender, ControllerInteractionEventArgs e)
+	{
+		if (wheelchairType == WheelchairTypes.Manual)
+			wheelchairType = WheelchairTypes.Electric;
+		if (wheelchairType == WheelchairTypes.Electric)
+			wheelchairType = WheelchairTypes.Manual;
+
+		Debug.Log("Button 2 pressed");
+	}
 }
