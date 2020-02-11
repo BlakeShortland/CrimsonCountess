@@ -71,7 +71,7 @@ public class WheelchairMovementController : MonoBehaviour
 			return;
 		}
 
-		controllerEvents.ButtonTwoPressed += ControllerEvents_ButtonTwoPressed;
+		controllerEvents.ButtonTwoPressed += DoButtonTwoPressed;
 	}
 
 	void Start()
@@ -244,13 +244,21 @@ public class WheelchairMovementController : MonoBehaviour
 
 	#endregion
 
-	void ControllerEvents_ButtonTwoPressed(object sender, ControllerInteractionEventArgs e)
+	void DoButtonTwoPressed(object sender, ControllerInteractionEventArgs e)
 	{
-		if (wheelchairType == WheelchairTypes.Manual)
-			wheelchairType = WheelchairTypes.Electric;
-		if (wheelchairType == WheelchairTypes.Electric)
-			wheelchairType = WheelchairTypes.Manual;
+		if (e.controllerReference.scriptAlias.name == "LeftControllerScriptAlias")
+		{
+			if (wheelchairType == WheelchairTypes.Manual)
+			{
+				wheelchairType = WheelchairTypes.Electric;
+				Debug.Log("Switched control methods to electric");
+			}
 
-		Debug.Log("Button 2 pressed");
+			if (wheelchairType == WheelchairTypes.Electric)
+			{
+				wheelchairType = WheelchairTypes.Manual;
+				Debug.Log("Switched control methods to manual");
+			}
+		}
 	}
 }
