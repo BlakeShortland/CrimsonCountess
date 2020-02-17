@@ -16,10 +16,17 @@ public class GameController : MonoBehaviour
     
     public static GameController instance { get; private set; }
 
+	#region Bools
 
-    #region Events
+	bool bookPlaced;
+	bool candlePlaced;
+	bool ritualComplete;
 
-    public UnityEvent candleGrab;
+	#endregion
+
+	#region Events
+
+	public UnityEvent candleGrab;
 
     #endregion
 
@@ -155,32 +162,27 @@ public class GameController : MonoBehaviour
         //light ritual candle
     }
 
-    public void KnifePickedUp()
+	public void CandlePlaced()
+	{
+
+	}
+
+	public void BookPickedUp()
     {
 
     }
 
-    public void PaintingCut()
+    public void BookPlaced()
     {
 
     }
 
-    public void KeyPickedUp()
-    {
+	public void KnifePickedUp()
+	{
 
-    }
+	}
 
-    public void BookUnlocked()
-    {
-
-    }
-
-    public void BookGrabbed()
-    {
-
-    }
-
-    public void RitualCompleted()
+	public void RitualCompleted()
     {
 
     }

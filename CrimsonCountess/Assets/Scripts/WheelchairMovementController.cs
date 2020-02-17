@@ -252,12 +252,14 @@ public class WheelchairMovementController : MonoBehaviour
 			{
 				wheelchairType = WheelchairTypes.Electric;
 				Debug.Log("Switched control methods to electric");
+				return;
 			}
 
 			if (wheelchairType == WheelchairTypes.Electric)
 			{
 				wheelchairType = WheelchairTypes.Manual;
 				Debug.Log("Switched control methods to manual");
+				return;
 			}
 		}
 	}
