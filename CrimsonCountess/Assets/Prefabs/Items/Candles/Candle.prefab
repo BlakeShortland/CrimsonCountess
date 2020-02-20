@@ -263,6 +263,21 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.0125
       objectReference: {fileID: 0}
+    - target: {fileID: 4437270859643991436, guid: 78c54e0823363b142b34bfe6dea9e85a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437270859643991436, guid: 78c54e0823363b142b34bfe6dea9e85a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.0112
+      objectReference: {fileID: 0}
+    - target: {fileID: 8880803003442481995, guid: 78c54e0823363b142b34bfe6dea9e85a,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 6941169050732593648, guid: 78c54e0823363b142b34bfe6dea9e85a,
         type: 3}
       propertyPath: m_Intensity
@@ -272,6 +287,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Range
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6941169050732593648, guid: 78c54e0823363b142b34bfe6dea9e85a,
+        type: 3}
+      propertyPath: m_BoundingSphereOverride.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6941169050732593648, guid: 78c54e0823363b142b34bfe6dea9e85a,
+        type: 3}
+      propertyPath: m_BoundingSphereOverride.y
+      value: 0.15625
+      objectReference: {fileID: 0}
+    - target: {fileID: 6941169050732593648, guid: 78c54e0823363b142b34bfe6dea9e85a,
+        type: 3}
+      propertyPath: m_BoundingSphereOverride.z
+      value: 0.03125
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 78c54e0823363b142b34bfe6dea9e85a, type: 3}
