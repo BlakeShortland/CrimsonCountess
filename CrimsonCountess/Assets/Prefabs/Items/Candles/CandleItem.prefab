@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2916061873141195820}
   - component: {fileID: 8583777359049429245}
   - component: {fileID: 7654114907713383643}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Aura Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ Light:
   m_Type: 2
   m_Color: {r: 0.72156864, g: 0.654902, b: 1, a: 1}
   m_Intensity: 0.5
-  m_Range: 1
+  m_Range: 4
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -143,7 +143,7 @@ GameObject:
   - component: {fileID: 772902961477855854}
   - component: {fileID: 6649576240327251460}
   - component: {fileID: 45016804}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CandleItem
   m_TagString: ItemCandle
   m_Icon: {fileID: 0}
@@ -368,7 +368,7 @@ GameObject:
   - component: {fileID: 4521792548733743274}
   - component: {fileID: 2151093166851349817}
   - component: {fileID: 2528865956923551705}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5121,7 +5121,7 @@ GameObject:
   - component: {fileID: 1371888641694631558}
   - component: {fileID: 162885573444080558}
   - component: {fileID: 3789103632287008655}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Flame (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9876,7 +9876,7 @@ GameObject:
   - component: {fileID: 3392030656360793052}
   - component: {fileID: 190345984029067880}
   - component: {fileID: 287352577196207950}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Candle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9954,7 +9954,7 @@ GameObject:
   - component: {fileID: 3276275637173144996}
   - component: {fileID: 5042778257372654738}
   - component: {fileID: 7529396835089930882}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
