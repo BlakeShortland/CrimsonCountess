@@ -127,6 +127,36 @@ MonoBehaviour:
   customCookieDistanceFalloffPower: 2
   customAngularFalloffThreshold: 0.8
   customAngularFalloffPower: 2
+--- !u!1 &952661493919984065
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4248058355429727539}
+  m_Layer: 8
+  m_Name: GrabAttachPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4248058355429727539
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 952661493919984065}
+  m_LocalRotation: {x: 0.26721463, y: -0, z: -0, w: 0.9636371}
+  m_LocalPosition: {x: 0.033, y: 0.029, z: 0.14}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8380206434628740537}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 30.997002, y: 0, z: 0}
 --- !u!1 &1762283083015595732
 GameObject:
   m_ObjectHideFlags: 0
@@ -143,6 +173,7 @@ GameObject:
   - component: {fileID: 772902961477855854}
   - component: {fileID: 6649576240327251460}
   - component: {fileID: 45016804}
+  - component: {fileID: 6489983308054498401}
   m_Layer: 8
   m_Name: CandleItem
   m_TagString: ItemCandle
@@ -157,16 +188,17 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1762283083015595732}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.37871444, y: 0.05497217, z: -0.1327146, w: 0.9142977}
+  m_LocalPosition: {x: 0.026, y: -0.023, z: 0.163}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1371888641694631558}
   - {fileID: 3276275637173144996}
   - {fileID: 3392030656360793052}
+  - {fileID: 4248058355429727539}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 45.000004, y: 0, z: -16.518002}
 --- !u!33 &6115415776267926854
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -357,6 +389,26 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &6489983308054498401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1762283083015595732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8afa0b205791c9f4496bf2814aeac078, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  precisionGrab: 0
+  rightSnapHandle: {fileID: 4248058355429727539}
+  leftSnapHandle: {fileID: 4248058355429727539}
+  throwVelocityWithAttachDistance: 0
+  throwMultiplier: 1
+  onGrabCollisionDelay: 0
+  destroyImmediatelyOnThrow: 1
+  breakForce: 1500
 --- !u!1 &1941629063430066051
 GameObject:
   m_ObjectHideFlags: 0

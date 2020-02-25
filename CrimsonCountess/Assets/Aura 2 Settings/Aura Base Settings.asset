@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Aura Base Settings
   m_EditorClassIdentifier: 
   useDensity: 1
-  density: 0.001
+  density: 0.03
   useScattering: 1
   scattering: 0.2
   useAmbientLighting: 1

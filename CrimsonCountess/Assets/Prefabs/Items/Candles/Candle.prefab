@@ -183,11 +183,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5940300848259456193}
     m_Modifications:
-    - target: {fileID: 4722006372769129567, guid: 78c54e0823363b142b34bfe6dea9e85a,
-        type: 3}
-      propertyPath: m_Name
-      value: Flame
-      objectReference: {fileID: 0}
     - target: {fileID: 2393398369724674848, guid: 78c54e0823363b142b34bfe6dea9e85a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -258,6 +253,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.01
       objectReference: {fileID: 0}
+    - target: {fileID: 4722006372769129567, guid: 78c54e0823363b142b34bfe6dea9e85a,
+        type: 3}
+      propertyPath: m_Name
+      value: Flame
+      objectReference: {fileID: 0}
     - target: {fileID: 8454293365848996420, guid: 78c54e0823363b142b34bfe6dea9e85a,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -281,12 +281,12 @@ PrefabInstance:
     - target: {fileID: 6941169050732593648, guid: 78c54e0823363b142b34bfe6dea9e85a,
         type: 3}
       propertyPath: m_Intensity
-      value: 0.5
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 6941169050732593648, guid: 78c54e0823363b142b34bfe6dea9e85a,
         type: 3}
       propertyPath: m_Range
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6941169050732593648, guid: 78c54e0823363b142b34bfe6dea9e85a,
         type: 3}
@@ -302,6 +302,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_BoundingSphereOverride.z
       value: 0.03125
+      objectReference: {fileID: 0}
+    - target: {fileID: 6941169050732593648, guid: 78c54e0823363b142b34bfe6dea9e85a,
+        type: 3}
+      propertyPath: m_Shadows.m_NearPlane
+      value: 0.03
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 78c54e0823363b142b34bfe6dea9e85a, type: 3}
