@@ -10,6 +10,8 @@ TagManager:
   - ItemCandle
   - ItemKnife
   - ItemBook
+  - RightHand
+  - LeftHand
   layers:
   - Default
   - TransparentFX
