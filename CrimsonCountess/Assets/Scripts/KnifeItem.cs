@@ -1,5 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿/*
+ * Script created by: Blake Shortland | Editor: [Null]
+ */
 using UnityEngine;
 
 public class KnifeItem : MonoBehaviour

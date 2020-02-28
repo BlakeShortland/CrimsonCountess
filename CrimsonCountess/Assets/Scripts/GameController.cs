@@ -1,8 +1,6 @@
 ﻿/*
  * Script created by: Blake Shortland | Editor: [Null]
  */
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -18,19 +16,20 @@ public class GameController : MonoBehaviour
 
 	#region Bools
 
-	bool bookPlaced;
-	bool candlePlaced;
-	bool ritualComplete;
+	public bool bookPlaced;
+	public bool candlePlaced;
+	public bool ritualComplete;
 
 	#endregion
 
 	#region Events
 
 	public UnityEvent candleGrab;
+	public UnityEvent candlePlace;
 
-    #endregion
+	#endregion
 
-    enum Rooms {RitualRoom, Bathroom, LivingRoom, Library}
+	enum Rooms {RitualRoom, Bathroom, LivingRoom, Library}
     enum RitualSiteItems {Candle, Knife, Book};
 
     void Awake()
@@ -145,26 +144,27 @@ public class GameController : MonoBehaviour
     {
         if (candleGrab == null)
             candleGrab = new UnityEvent();
-    }
+		if (candlePlace == null)
+			candlePlace = new UnityEvent();
+	}
 
     public void ExtinguishCandles()
     {
-        //Get all candles in bathroom scene
-        //Run their extinguish function
-        //Unlock living room
+		if (!candlePlaced)
+		{
 
-        candleGrab.Invoke(); //Triggers candleGrab event
+			//Get all candles in bathroom scene
+			//Run their extinguish function
+			//Unlock living room
+
+			candleGrab.Invoke(); //Triggers candleGrab event
+		}
     }
 
-    public void CandleLit()
-    {
-        //lock bathroom
-        //light ritual candle
-    }
-
-	public void CandlePlaced()
+	public void CandlePlace()
 	{
-
+		candlePlaced = true;
+		candlePlace.Invoke();
 	}
 
 	public void BookPickedUp()
