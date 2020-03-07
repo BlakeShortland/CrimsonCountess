@@ -18,11 +18,11 @@ public class SnapDropZoneLocker : MonoBehaviour
 	{
 		myInteractableObject = mySDZ.GetCurrentSnappedInteractableObject();
 
-		mySDZ.defaultSnappedInteractableObject = myInteractableObject;
+		Lockbject();
 	}
 
-	public void Deletus()
+	void Lockbject()
 	{
-		Destroy(gameObject);
+		myInteractableObject.isGrabbable = false;
 	}
 }
