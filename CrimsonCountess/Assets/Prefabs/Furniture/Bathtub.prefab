@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 810855102125578319}
   - component: {fileID: 2687907149398024358}
   - component: {fileID: 157979646345782661}
-  - component: {fileID: 157979646345782662}
+  - component: {fileID: 7804357245934829371}
   m_Layer: 0
   m_Name: Bath
   m_TagString: Untagged
@@ -96,8 +96,8 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &157979646345782662
-BoxCollider:
+--- !u!64 &7804357245934829371
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -106,9 +106,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.0461988, y: 1.2224618, z: 0.7733524}
-  m_Center: {x: 0.00048625466, y: 0.00024285915, z: 0.3866762}
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: -7983645675987656659, guid: cbdf16cab5b114b4b812e7b0acf04736, type: 3}
 --- !u!1 &5922445383838355872
 GameObject:
   m_ObjectHideFlags: 0

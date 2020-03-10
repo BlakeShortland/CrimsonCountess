@@ -1,10 +1,7 @@
 ﻿/*
  * Script created by: Blake Shortland | Editor: Joshua Ganon
  */
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 using VRTK.Controllables.ArtificialBased;
 using VRTK;
 

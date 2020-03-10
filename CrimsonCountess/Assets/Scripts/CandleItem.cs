@@ -1,4 +1,7 @@
-﻿public class CandleItem : Candle
+﻿/*
+ * Script created by: Blake Shortland | Editor: [Null]
+ */
+public class CandleItem : Candle
 {
 	public override void Start()
 	{
