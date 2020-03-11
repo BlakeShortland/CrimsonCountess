@@ -35,10 +35,14 @@ public class WheelchairMovementController : MonoBehaviour
     float leftWheelSpeed;
     float rightWheelSpeed;
 
+    float lerpTimer = 0f;
+    float lerpTime = 0.5f;
+
     //These values make the wheelchair controllable
     [SerializeField] float speedReducer = 0.01f;
     [SerializeField] float rotationSpeedIncreaser = 20f;
     [SerializeField] float straightLineAssistSensitivity = 0.1f;
+    [SerializeField] float straightLineAssistLerp = 1f;
 
     float rotationSpeed;
 
@@ -140,8 +144,14 @@ public class WheelchairMovementController : MonoBehaviour
     //Determines which wheel is spinning faster and rotates the wheelchair accordingly
     void RotateManual()
     {
+        lerpTimer += Time.deltaTime;
+        Mathf.Clamp(lerpTimer, 0, lerpTime);
+
+        lerpTimer *= 2;
+
+        float oldRotateSpeed = rotationSpeed;
         float targetRotateSpeed = Mathf.Clamp((StraightLineAssist(leftWheelSpeed, rightWheelSpeed)), -3f, 3f);
-        float rotateSpeed = Mathf.Lerp(rotationSpeed, targetRotateSpeed, Time.deltaTime);
+        float rotateSpeed = Mathf.Lerp(oldRotateSpeed, targetRotateSpeed, lerpTimer);
 
         transform.Rotate(Vector3.up, rotateSpeed * Time.deltaTime * rotationSpeedIncreaser);
     }
@@ -176,6 +186,7 @@ public class WheelchairMovementController : MonoBehaviour
             if (obj == leftWheelObj)
             {
                 grabbingLeftWheel = true;
+                lerpTimer = 0f;
             }
             else
             {
@@ -209,6 +220,7 @@ public class WheelchairMovementController : MonoBehaviour
             {
                 print("yay righty" + obj);
                 grabbingRightWheel = true;
+                lerpTimer = 0f;
             }
             else
             {
