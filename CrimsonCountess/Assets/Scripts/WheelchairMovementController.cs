@@ -21,6 +21,9 @@ public class WheelchairMovementController : MonoBehaviour
     [SerializeField] VRTK_InteractGrab leftHandGrab;
     [SerializeField] VRTK_InteractGrab rightHandGrab;
 
+    [SerializeField] GameObject leftHandObj;
+    [SerializeField] GameObject rightHandObj;
+
     bool grabbingLeftWheel;
     bool grabbingRightWheel;
 
@@ -35,6 +38,7 @@ public class WheelchairMovementController : MonoBehaviour
     //These values make the wheelchair controllable
     [SerializeField] float speedReducer = 0.01f;
     [SerializeField] float rotationSpeedIncreaser = 20f;
+    [SerializeField] float straightLineAssistSensitivity = 0.1f;
 
     float rotationSpeed;
 
@@ -82,6 +86,9 @@ public class WheelchairMovementController : MonoBehaviour
 
         print(leftWheelObj);
         print(rightWheelObj);
+
+        leftHandObj.GetComponent<VRTK_InteractHaptics>().objectToAffect = leftWheelParent.GetComponentInChildren<VRTK_InteractableObject>();
+        rightHandObj.GetComponent<VRTK_InteractHaptics>().objectToAffect = rightWheelParent.GetComponentInChildren<VRTK_InteractableObject>();
     }
 
     void Update()
@@ -133,17 +140,18 @@ public class WheelchairMovementController : MonoBehaviour
     //Determines which wheel is spinning faster and rotates the wheelchair accordingly
     void RotateManual()
     {
-        float rotateSpeed = Mathf.Clamp((StraightLineAssist(leftWheelSpeed, rightWheelSpeed)), -3f, 3f);
-        
+        float targetRotateSpeed = Mathf.Clamp((StraightLineAssist(leftWheelSpeed, rightWheelSpeed)), -3f, 3f);
+        float rotateSpeed = Mathf.Lerp(rotationSpeed, targetRotateSpeed, Time.deltaTime);
+
         transform.Rotate(Vector3.up, rotateSpeed * Time.deltaTime * rotationSpeedIncreaser);
     }
 
     float StraightLineAssist(float leftWheelSpeed, float rightWheelSpeed)
     {
-        float rotateSpeed = leftWheelSpeed - rightWheelSpeed;
+        float rotateSpeed = 0;
 
-        if (rotateSpeed < 0.05 && rotateSpeed > -0.05 && BothHandsTouching())
-            rotateSpeed = 0;
+        if (leftWheelSpeed - rightWheelSpeed > straightLineAssistSensitivity || leftWheelSpeed - rightWheelSpeed < -straightLineAssistSensitivity /*&& BothHandsTouching()*/)
+            rotateSpeed = leftWheelSpeed - rightWheelSpeed;
 
         rotationSpeed = rotateSpeed;
 
