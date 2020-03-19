@@ -4,45 +4,47 @@ using UnityEngine;
 
 public class AudioController : MonoBehaviour
 {
-	public ccAudioClip[] ccAudioClips;
+	public AudioSource musicPlayer;
+	public AudioSource atmosphericSFX;
 
-	AudioSource musicPlayer;
+	public static AudioController Instance = null;
 
 	void Awake()
 	{
-		musicPlayer = GameObject.Find("MusicPlayer").GetComponent<AudioSource>();
+		if (Instance == null)
+			Instance = this;
+		else
+			Destroy(gameObject);
+
+		DontDestroyOnLoad(gameObject);
 	}
 
-	void Start()
+	public void PlayMusic(AudioClip clip)
 	{
-		
+		musicPlayer.clip = clip;
+		musicPlayer.Play();
 	}
 
-	void PlaySound(string soundName)
+	public void PlaySFX(AudioClip clip)
 	{
-		foreach(ccAudioClip ccAudioClip in ccAudioClips)
-		{
-			if(ccAudioClip.audioClipName == soundName)
-			{
-				if(ccAudioClip.audioSourceTransform == null)
-				{
-					musicPlayer.clip = ccAudioClip.audioClip;
-					musicPlayer.Play();
-				}
-			}
-		}
+		atmosphericSFX.clip = clip;
+		atmosphericSFX.Play();
+	}
+
+	public void PlaySFX(AudioClip clip, AudioSource source)
+	{
+		source.clip = clip;
+		source.Play();
+	}
+
+	public void StopMusic()
+	{
+		musicPlayer.Stop();
+	}
+
+	public void StopSFX()
+	{
+		atmosphericSFX.Stop();
 	}
 }
 
-[System.Serializable]
-public class ccAudioClip
-{
-	[Tooltip("The audio clip")]
-	public AudioClip audioClip;
-	[Tooltip("The title of audio clip")]
-	public string audioClipName;
-	[Tooltip("The description of audio clip")]
-	public string audioClipDescription;
-	[Tooltip("The source transform of the sound. If blank, it will be a global 2D sound (eg Music, Rain)")]
-	public Transform audioSourceTransform;
-}

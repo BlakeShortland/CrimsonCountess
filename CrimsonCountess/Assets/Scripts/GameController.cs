@@ -6,38 +6,28 @@ using UnityEngine.Events;
 
 public class GameController : MonoBehaviour
 {
-    /* 
-     * Things that need storing:
-     *      AudioManager script (Will control ambiant audio and piano)
-     *      SceneManager script (Will control additave/subtractive scene loading)
-    */
-    
-    public static GameController instance { get; private set; }
+	AudioController audioController;
 
-	#region Bools
+	public static GameController Instance = null;
 
 	public bool bookPlaced;
 	public bool candlePlaced;
 	public bool ritualComplete;
 
-	#endregion
-
-	#region Events
-
 	public UnityEvent candleGrab;
 	public UnityEvent candlePlace;
-
-	#endregion
 
 	enum Rooms {RitualRoom, Bathroom, LivingRoom, Library}
     enum RitualSiteItems {Candle, Knife, Book};
 
     void Awake()
     {
-        if (instance == null)
-            instance = this;
+        if (Instance == null)
+            Instance = this;
         else
             Destroy(gameObject);
+
+		audioController = AudioController.Instance;
 
         SetUpEvents();
     }
