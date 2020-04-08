@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 413997637796870200}
   - component: {fileID: 413997637796870201}
   m_Layer: 0
-  m_Name: BathroomLight
+  m_Name: Ceiling
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
