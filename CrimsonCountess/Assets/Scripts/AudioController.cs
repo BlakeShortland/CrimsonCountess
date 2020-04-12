@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class AudioController : MonoBehaviour
 {
+	[SerializeField] AudioClip[] musicClips;
+	[SerializeField] AudioClip[] atmosphericSFXClips;
+	[SerializeField] AudioClip[] weatherClips;
+	[SerializeField] AudioClip[] miscClips;
+	[SerializeField] AudioClip[] heartBeatClips;
+
 	public AudioSource musicPlayer;
 	public AudioSource atmosphericSFX;
 
