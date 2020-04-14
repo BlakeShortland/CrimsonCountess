@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class AudioController : MonoBehaviour
 {
+	GameController gameController;
+
 	[SerializeField] AudioClip[] musicClips;
 	[SerializeField] AudioClip[] atmosphericSFXClips;
 	[SerializeField] AudioClip[] weatherClips;
@@ -12,6 +14,7 @@ public class AudioController : MonoBehaviour
 
 	public AudioSource musicPlayer;
 	public AudioSource atmosphericSFX;
+	public AudioSource thunder;
 
 	public static AudioController Instance = null;
 
@@ -23,6 +26,14 @@ public class AudioController : MonoBehaviour
 			Destroy(gameObject);
 
 		DontDestroyOnLoad(gameObject);
+
+		gameController = GameController.Instance;
+	}
+
+	void Start()
+	{
+		StartCoroutine(LoopThunder());
+		StartCoroutine(LoopMusic());
 	}
 
 	public void PlayMusic(AudioClip clip)
@@ -51,6 +62,32 @@ public class AudioController : MonoBehaviour
 	public void StopSFX()
 	{
 		atmosphericSFX.Stop();
+	}
+
+	IEnumerator LoopThunder()
+	{
+		while (true)
+		{
+			yield return new WaitForSeconds(Random.Range(15,180));
+
+			PlaySFX(weatherClips[Random.Range(0, weatherClips.Length - 1)], thunder);
+		}
+	}
+
+	IEnumerator LoopMusic()
+	{
+		int i = 0;
+
+		while (true)
+		{
+			PlayMusic(musicClips[i]);
+			i++;
+
+			if (i == musicClips.Length)
+				i = 0;
+
+			yield return new WaitUntil(() => !musicPlayer.isPlaying);
+		}
 	}
 }
 
