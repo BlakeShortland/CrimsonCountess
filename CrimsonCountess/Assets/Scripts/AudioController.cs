@@ -4,45 +4,90 @@ using UnityEngine;
 
 public class AudioController : MonoBehaviour
 {
-	public ccAudioClip[] ccAudioClips;
+	GameController gameController;
 
-	AudioSource musicPlayer;
+	[SerializeField] AudioClip[] musicClips;
+	[SerializeField] AudioClip[] atmosphericSFXClips;
+	[SerializeField] AudioClip[] weatherClips;
+	[SerializeField] AudioClip[] miscClips;
+	[SerializeField] AudioClip[] heartBeatClips;
+
+	public AudioSource musicPlayer;
+	public AudioSource atmosphericSFX;
+	public AudioSource thunder;
+
+	public static AudioController Instance = null;
 
 	void Awake()
 	{
-		musicPlayer = GameObject.Find("MusicPlayer").GetComponent<AudioSource>();
+		if (Instance == null)
+			Instance = this;
+		else
+			Destroy(gameObject);
+
+		DontDestroyOnLoad(gameObject);
+
+		gameController = GameController.Instance;
 	}
 
 	void Start()
 	{
-		
+		StartCoroutine(LoopThunder());
+		StartCoroutine(LoopMusic());
 	}
 
-	void PlaySound(string soundName)
+	public void PlayMusic(AudioClip clip)
 	{
-		foreach(ccAudioClip ccAudioClip in ccAudioClips)
+		musicPlayer.clip = clip;
+		musicPlayer.Play();
+	}
+
+	public void PlaySFX(AudioClip clip)
+	{
+		atmosphericSFX.clip = clip;
+		atmosphericSFX.Play();
+	}
+
+	public void PlaySFX(AudioClip clip, AudioSource source)
+	{
+		source.clip = clip;
+		source.Play();
+	}
+
+	public void StopMusic()
+	{
+		musicPlayer.Stop();
+	}
+
+	public void StopSFX()
+	{
+		atmosphericSFX.Stop();
+	}
+
+	IEnumerator LoopThunder()
+	{
+		while (true)
 		{
-			if(ccAudioClip.audioClipName == soundName)
-			{
-				if(ccAudioClip.audioSourceTransform == null)
-				{
-					musicPlayer.clip = ccAudioClip.audioClip;
-					musicPlayer.Play();
-				}
-			}
+			yield return new WaitForSeconds(Random.Range(15,180));
+
+			PlaySFX(weatherClips[Random.Range(0, weatherClips.Length - 1)], thunder);
+		}
+	}
+
+	IEnumerator LoopMusic()
+	{
+		int i = 0;
+
+		while (true)
+		{
+			PlayMusic(musicClips[i]);
+			i++;
+
+			if (i == musicClips.Length)
+				i = 0;
+
+			yield return new WaitUntil(() => !musicPlayer.isPlaying);
 		}
 	}
 }
 
-[System.Serializable]
-public class ccAudioClip
-{
-	[Tooltip("The audio clip")]
-	public AudioClip audioClip;
-	[Tooltip("The title of audio clip")]
-	public string audioClipName;
-	[Tooltip("The description of audio clip")]
-	public string audioClipDescription;
-	[Tooltip("The source transform of the sound. If blank, it will be a global 2D sound (eg Music, Rain)")]
-	public Transform audioSourceTransform;
-}

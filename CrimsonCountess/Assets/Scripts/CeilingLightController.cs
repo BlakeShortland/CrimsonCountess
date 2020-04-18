@@ -12,7 +12,7 @@ public class CeilingLightController : MonoBehaviour
 
 	void Start()
 	{
-		gameController = GameController.instance;
+		gameController = GameController.Instance;
 		auraLight = GetComponent<AuraLight>();
 		myLight = GetComponent<Light>();
 		gameController.candleGrab.AddListener(DisableLight);

@@ -23,7 +23,7 @@ public class Candle : MonoBehaviour
 
 	public virtual void Start()
 	{
-		gameController = GameController.instance;
+		gameController = GameController.Instance;
 		gameController.candleGrab.AddListener(Extinguish); //Assigns Extinguish function to listen for the candelGrab event
 		mySmokeEmitter.Stop();
 	}

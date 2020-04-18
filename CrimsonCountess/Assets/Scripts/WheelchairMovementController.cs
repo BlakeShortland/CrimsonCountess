@@ -21,6 +21,9 @@ public class WheelchairMovementController : MonoBehaviour
     [SerializeField] VRTK_InteractGrab leftHandGrab;
     [SerializeField] VRTK_InteractGrab rightHandGrab;
 
+    [SerializeField] GameObject leftHandObj;
+    [SerializeField] GameObject rightHandObj;
+
     bool grabbingLeftWheel;
     bool grabbingRightWheel;
 
@@ -32,9 +35,14 @@ public class WheelchairMovementController : MonoBehaviour
     float leftWheelSpeed;
     float rightWheelSpeed;
 
+    float lerpTimer = 0f;
+    float lerpTime = 0.5f;
+
     //These values make the wheelchair controllable
     [SerializeField] float speedReducer = 0.01f;
     [SerializeField] float rotationSpeedIncreaser = 20f;
+    [SerializeField] float straightLineAssistSensitivity = 0.1f;
+    [SerializeField] float straightLineAssistLerp = 1f;
 
     float rotationSpeed;
 
@@ -82,6 +90,9 @@ public class WheelchairMovementController : MonoBehaviour
 
         print(leftWheelObj);
         print(rightWheelObj);
+
+        leftHandObj.GetComponent<VRTK_InteractHaptics>().objectToAffect = leftWheelParent.GetComponentInChildren<VRTK_InteractableObject>();
+        rightHandObj.GetComponent<VRTK_InteractHaptics>().objectToAffect = rightWheelParent.GetComponentInChildren<VRTK_InteractableObject>();
     }
 
     void Update()
@@ -133,17 +144,24 @@ public class WheelchairMovementController : MonoBehaviour
     //Determines which wheel is spinning faster and rotates the wheelchair accordingly
     void RotateManual()
     {
-        float rotateSpeed = Mathf.Clamp((StraightLineAssist(leftWheelSpeed, rightWheelSpeed)), -3f, 3f);
-        
+        lerpTimer += Time.deltaTime;
+        Mathf.Clamp(lerpTimer, 0, lerpTime);
+
+        lerpTimer *= 2;
+
+        float oldRotateSpeed = rotationSpeed;
+        float targetRotateSpeed = Mathf.Clamp((StraightLineAssist(leftWheelSpeed, rightWheelSpeed)), -3f, 3f);
+        float rotateSpeed = Mathf.Lerp(oldRotateSpeed, targetRotateSpeed, lerpTimer);
+
         transform.Rotate(Vector3.up, rotateSpeed * Time.deltaTime * rotationSpeedIncreaser);
     }
 
     float StraightLineAssist(float leftWheelSpeed, float rightWheelSpeed)
     {
-        float rotateSpeed = leftWheelSpeed - rightWheelSpeed;
+        float rotateSpeed = 0;
 
-        if (rotateSpeed < 0.05 && rotateSpeed > -0.05 && BothHandsTouching())
-            rotateSpeed = 0;
+        if (leftWheelSpeed - rightWheelSpeed > straightLineAssistSensitivity || leftWheelSpeed - rightWheelSpeed < -straightLineAssistSensitivity /*&& BothHandsTouching()*/)
+            rotateSpeed = leftWheelSpeed - rightWheelSpeed;
 
         rotationSpeed = rotateSpeed;
 
@@ -168,6 +186,7 @@ public class WheelchairMovementController : MonoBehaviour
             if (obj == leftWheelObj)
             {
                 grabbingLeftWheel = true;
+                lerpTimer = 0f;
             }
             else
             {
@@ -201,6 +220,7 @@ public class WheelchairMovementController : MonoBehaviour
             {
                 print("yay righty" + obj);
                 grabbingRightWheel = true;
+                lerpTimer = 0f;
             }
             else
             {

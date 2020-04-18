@@ -11,7 +11,7 @@ public class FogController : MonoBehaviour
 
 	void Start()
 	{
-		gameController = GameController.instance;
+		gameController = GameController.Instance;
 		auraVolume = GetComponent<AuraVolume>();
 		gameController.candleGrab.AddListener(EnableFog);
 		gameController.candlePlace.AddListener(DisableFog);

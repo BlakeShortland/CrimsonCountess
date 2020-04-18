@@ -1,5 +1,64 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2636622681599342095
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2465137636954576554}
+  - component: {fileID: 4069217397174361116}
+  - component: {fileID: 7603300569709466015}
+  m_Layer: 8
+  m_Name: Blade
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2465137636954576554
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2636622681599342095}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7556464192324905008}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &4069217397174361116
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2636622681599342095}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1, y: 1.1, z: 0.5643883}
+  m_Center: {x: 0, y: 0, z: -0.21780586}
+--- !u!114 &7603300569709466015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2636622681599342095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64568dbafc19a0641927a79d03f5b011, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bloodSpurt: {fileID: 7647768609092809363, guid: da5de25a708a61a4da3d8d5ab5483b58,
+    type: 3}
 --- !u!1 &3264328580622824998
 GameObject:
   m_ObjectHideFlags: 0
@@ -10,7 +69,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6482255263980277851}
   m_Layer: 8
-  m_Name: GameObject
+  m_Name: SnapPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,7 +104,6 @@ GameObject:
   - component: {fileID: 3916221463656105818}
   - component: {fileID: 3113863191259138177}
   - component: {fileID: 7870585973476064148}
-  - component: {fileID: 7647720568510799032}
   - component: {fileID: 8793336256477182486}
   m_Layer: 8
   m_Name: KnifeItem
@@ -66,6 +124,7 @@ Transform:
   m_LocalScale: {x: 0.05, y: 0.05, z: 0.5}
   m_Children:
   - {fileID: 6482255263980277851}
+  - {fileID: 2465137636954576554}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -231,20 +290,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &7647720568510799032
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8090420704071144967}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64568dbafc19a0641927a79d03f5b011, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bloodSpurt: {fileID: 7647768609092809363, guid: da5de25a708a61a4da3d8d5ab5483b58,
-    type: 3}
 --- !u!114 &8793336256477182486
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -259,7 +304,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   precisionGrab: 0
   rightSnapHandle: {fileID: 6482255263980277851}
-  leftSnapHandle: {fileID: 0}
+  leftSnapHandle: {fileID: 6482255263980277851}
   throwVelocityWithAttachDistance: 0
   throwMultiplier: 1
   onGrabCollisionDelay: 0
