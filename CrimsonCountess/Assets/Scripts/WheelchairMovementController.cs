@@ -81,7 +81,8 @@ public class WheelchairMovementController : MonoBehaviour
 
 	void Start()
     {
-		transform.position = new Vector3(-17f, 3f, 13.5f);
+		//transform.position = new Vector3(-17f, 3f, 13.5f);
+		GameObject.Find("[VRTK_SDKManager]").GetComponent<Transform>().localPosition = new Vector3(0, 0, 0);
 
 		//Set the "previous" rotation values to avoid null references
 		prevLeftWheelAngle = leftWheel.GetValue();
