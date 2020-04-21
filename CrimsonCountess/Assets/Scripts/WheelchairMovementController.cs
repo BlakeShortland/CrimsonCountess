@@ -81,6 +81,8 @@ public class WheelchairMovementController : MonoBehaviour
 
 	void Start()
     {
+		transform.position = new Vector3(-17f, 3f, 13.5f);
+
 		//Set the "previous" rotation values to avoid null references
 		prevLeftWheelAngle = leftWheel.GetValue();
         prevRightWheelAngle = rightWheel.GetValue();
