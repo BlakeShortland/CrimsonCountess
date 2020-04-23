@@ -142,7 +142,7 @@ public class WheelchairMovementController : MonoBehaviour
         //Forward speed is the average speed of both wheels. This prevents super speed when the wheels are just added together.
         float forwardSpeed = Mathf.Clamp(((leftWheelSpeed + rightWheelSpeed) / 2), -.5f, 1f);
 
-        Vector3 translate = Vector3.back * forwardSpeed * Time.deltaTime;
+        Vector3 translate = (transform.forward * -1) * forwardSpeed * Time.deltaTime;
 
         //transform.Translate(translate);
         Debug.Log("Translate: " + translate);
@@ -161,6 +161,7 @@ public class WheelchairMovementController : MonoBehaviour
         float targetRotateSpeed = Mathf.Clamp((StraightLineAssist(leftWheelSpeed, rightWheelSpeed)), -3f, 3f);
         float rotateSpeed = Mathf.Lerp(oldRotateSpeed, targetRotateSpeed, lerpTimer);
 
+     
         transform.Rotate(Vector3.up, rotateSpeed * Time.deltaTime * rotationSpeedIncreaser);
     }
 
