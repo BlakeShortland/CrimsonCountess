@@ -204,10 +204,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameController: {fileID: 0}
-  myFlame: {fileID: 0}
-  myFlameEmitter: {fileID: 0}
-  mySmokeEmitter: {fileID: 0}
-  myLight: {fileID: 0}
+  myFlame: {fileID: 6749026075675508675}
+  myFlameEmitter: {fileID: 3343812760848336130}
+  mySmokeEmitter: {fileID: 1133122765590036367}
+  myLight: {fileID: 7426514904537698519}
 --- !u!1 &6749026075675508675
 GameObject:
   m_ObjectHideFlags: 0
@@ -9876,10 +9876,10 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 5.51014e-40, w: -1.177e-42}

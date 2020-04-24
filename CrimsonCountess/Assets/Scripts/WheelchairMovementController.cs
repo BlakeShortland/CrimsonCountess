@@ -9,7 +9,9 @@ public class WheelchairMovementController : MonoBehaviour
 {
 	public VRTK_ControllerEvents controllerEvents;
 
-	[SerializeField] VRTK_ArtificialRotator leftWheel;
+    [SerializeField] public Rigidbody self;
+
+    [SerializeField] VRTK_ArtificialRotator leftWheel;
     [SerializeField] VRTK_ArtificialRotator rightWheel;
 
     [SerializeField] Transform leftWheelParent;
@@ -81,8 +83,12 @@ public class WheelchairMovementController : MonoBehaviour
 
 	void Start()
     {
-		//Set the "previous" rotation values to avoid null references
-		prevLeftWheelAngle = leftWheel.GetValue();
+        //transform.position = new Vector3(-17f, 3f, 13.5f);
+        GameObject.Find("[VRTK_SDKManager]").GetComponent<Transform>().localPosition = new Vector3(0, 0, 0);
+
+
+        //Set the "previous" rotation values to avoid null references
+        prevLeftWheelAngle = leftWheel.GetValue();
         prevRightWheelAngle = rightWheel.GetValue();
 
         leftWheelObj = leftWheelParent.GetChild(0).gameObject;
@@ -117,6 +123,11 @@ public class WheelchairMovementController : MonoBehaviour
 		touchpadTouchTimer -= Time.deltaTime;
 	}
 
+	void LateUpdate()
+	{
+		transform.localEulerAngles = new Vector3(0, transform.localEulerAngles.y, 0);
+	}
+
 	#region ManualWheelchair
 
 	void CalculateWheelSpeed()
@@ -136,9 +147,11 @@ public class WheelchairMovementController : MonoBehaviour
         //Forward speed is the average speed of both wheels. This prevents super speed when the wheels are just added together.
         float forwardSpeed = Mathf.Clamp(((leftWheelSpeed + rightWheelSpeed) / 2), -.5f, 1f);
 
-        Vector3 translate = Vector3.back * forwardSpeed * Time.deltaTime;
+        Vector3 translate = (transform.forward * -1) * forwardSpeed * Time.deltaTime;
 
-        transform.Translate(translate);
+        //transform.Translate(translate);
+        Debug.Log("Translate: " + translate);
+        self.MovePosition(transform.position + translate);
     }
 
     //Determines which wheel is spinning faster and rotates the wheelchair accordingly
@@ -153,6 +166,7 @@ public class WheelchairMovementController : MonoBehaviour
         float targetRotateSpeed = Mathf.Clamp((StraightLineAssist(leftWheelSpeed, rightWheelSpeed)), -3f, 3f);
         float rotateSpeed = Mathf.Lerp(oldRotateSpeed, targetRotateSpeed, lerpTimer);
 
+     
         transform.Rotate(Vector3.up, rotateSpeed * Time.deltaTime * rotationSpeedIncreaser);
     }
 
@@ -252,10 +266,13 @@ public class WheelchairMovementController : MonoBehaviour
 		Vector2 touchpadPosition = controllerEvents.GetTouchpadAxis();
 
 		float forwardSpeed = Mathf.Clamp(touchpadPosition.y, -.5f, 1f);
-		Vector3 translate = Vector3.back * forwardSpeed * Time.deltaTime;
-		transform.Translate(translate);
+        print("forward speed" + forwardSpeed);
+		Vector3 translate = (transform.forward * -1) * forwardSpeed * Time.deltaTime;
+        //transform.Translate(translate);
+        Debug.Log("Translate: " + translate);
+        self.MovePosition(transform.position + translate);
 
-		float rotateSpeed = Mathf.Clamp(touchpadPosition.x * 3, -3f, 3f);
+        float rotateSpeed = Mathf.Clamp(touchpadPosition.x * 3, -3f, 3f);
 		transform.Rotate(Vector3.up, rotateSpeed * Time.deltaTime * rotationSpeedIncreaser);
 	}
 

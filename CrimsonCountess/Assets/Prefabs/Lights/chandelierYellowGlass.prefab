@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1615727588052540345}
   - component: {fileID: 3368343066088800922}
   - component: {fileID: 2183428316311262189}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: chandelierYellowGlass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -61,7 +61,7 @@ MeshRenderer:
   - {fileID: -3871190468899984389, guid: 553dd0d673321f246932555748fb13ce, type: 3}
   - {fileID: -4542130996913212045, guid: 553dd0d673321f246932555748fb13ce, type: 3}
   - {fileID: 4268317774777293004, guid: 553dd0d673321f246932555748fb13ce, type: 3}
-  - {fileID: -2738348968825721914, guid: 553dd0d673321f246932555748fb13ce, type: 3}
+  - {fileID: 2100000, guid: 91315943f11412943922a086ff264e4c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -108,6 +108,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 413997637796870199, guid: 718f04b966254ab46a6efa0b431f9ec1,
         type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 413997637796870199, guid: 718f04b966254ab46a6efa0b431f9ec1,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -124,7 +129,7 @@ PrefabInstance:
     - target: {fileID: 413997637796870198, guid: 718f04b966254ab46a6efa0b431f9ec1,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.411
+      value: 0.387
       objectReference: {fileID: 0}
     - target: {fileID: 413997637796870198, guid: 718f04b966254ab46a6efa0b431f9ec1,
         type: 3}
@@ -173,18 +178,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 413997637796870200, guid: 718f04b966254ab46a6efa0b431f9ec1,
         type: 3}
+      propertyPath: m_Color.r
+      value: 0.8235294
+      objectReference: {fileID: 0}
+    - target: {fileID: 413997637796870200, guid: 718f04b966254ab46a6efa0b431f9ec1,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 413997637796870200, guid: 718f04b966254ab46a6efa0b431f9ec1,
+        type: 3}
       propertyPath: m_Intensity
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 413997637796870200, guid: 718f04b966254ab46a6efa0b431f9ec1,
         type: 3}
       propertyPath: m_SpotAngle
-      value: 179
+      value: 110
       objectReference: {fileID: 0}
     - target: {fileID: 413997637796870200, guid: 718f04b966254ab46a6efa0b431f9ec1,
         type: 3}
       propertyPath: m_InnerSpotAngle
-      value: 16
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 413997637796870200, guid: 718f04b966254ab46a6efa0b431f9ec1,
         type: 3}
@@ -198,13 +213,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 413997637796870200, guid: 718f04b966254ab46a6efa0b431f9ec1,
         type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 7991
+      objectReference: {fileID: 0}
+    - target: {fileID: 413997637796870200, guid: 718f04b966254ab46a6efa0b431f9ec1,
+        type: 3}
       propertyPath: m_Lightmapping
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 413997637796870200, guid: 718f04b966254ab46a6efa0b431f9ec1,
         type: 3}
       propertyPath: m_BounceIntensity
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 718f04b966254ab46a6efa0b431f9ec1, type: 3}

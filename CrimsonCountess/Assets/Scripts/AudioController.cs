@@ -34,6 +34,7 @@ public class AudioController : MonoBehaviour
 	{
 		StartCoroutine(LoopThunder());
 		StartCoroutine(LoopMusic());
+		StartCoroutine(LoopRandomNoises());
 	}
 
 	public void PlayMusic(AudioClip clip)
@@ -68,9 +69,9 @@ public class AudioController : MonoBehaviour
 	{
 		while (true)
 		{
-			yield return new WaitForSeconds(Random.Range(15,180));
+			yield return new WaitForSeconds(Random.Range(20,120));
 
-			PlaySFX(weatherClips[Random.Range(0, weatherClips.Length - 1)], thunder);
+			PlaySFX(weatherClips[Random.Range(0, weatherClips.Length)], thunder);
 		}
 	}
 
@@ -87,6 +88,16 @@ public class AudioController : MonoBehaviour
 				i = 0;
 
 			yield return new WaitUntil(() => !musicPlayer.isPlaying);
+		}
+	}
+
+	IEnumerator LoopRandomNoises()
+	{
+		while (true)
+		{
+			yield return new WaitForSeconds(Random.Range(20, 120));
+
+			PlaySFX(miscClips[Random.Range(0, miscClips.Length)], atmosphericSFX);
 		}
 	}
 }

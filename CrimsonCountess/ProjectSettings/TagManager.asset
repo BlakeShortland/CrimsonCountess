@@ -24,9 +24,9 @@ TagManager:
   - Interactables
   - Player
   - Wheelchair
-  - 
-  - 
-  - 
+  - PlayerModel
+  - Lighting
+  - InvisibleWall
   - 
   - 
   - 
