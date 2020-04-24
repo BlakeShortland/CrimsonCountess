@@ -94,10 +94,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameController: {fileID: 0}
-  myFlame: {fileID: 0}
-  myFlameEmitter: {fileID: 0}
-  mySmokeEmitter: {fileID: 0}
-  myLight: {fileID: 0}
+  myFlame: {fileID: 3351003824821173030}
+  myFlameEmitter: {fileID: 6723848615774962151}
+  mySmokeEmitter: {fileID: 8976195683525245802}
+  myLight: {fileID: 7085613489045830377}
 --- !u!1 &3193733117820155515
 GameObject:
   m_ObjectHideFlags: 0
@@ -280,9 +280,33 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 78c54e0823363b142b34bfe6dea9e85a, type: 3}
+--- !u!1 &3351003824821173030 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4722006372769129567, guid: 78c54e0823363b142b34bfe6dea9e85a,
+    type: 3}
+  m_PrefabInstance: {fileID: 8000301683810246521}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5634505458284244057 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2393398369724674848, guid: 78c54e0823363b142b34bfe6dea9e85a,
+    type: 3}
+  m_PrefabInstance: {fileID: 8000301683810246521}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &6723848615774962151 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 3623479393654726302, guid: 78c54e0823363b142b34bfe6dea9e85a,
+    type: 3}
+  m_PrefabInstance: {fileID: 8000301683810246521}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7085613489045830377 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 960357518326031760, guid: 78c54e0823363b142b34bfe6dea9e85a,
+    type: 3}
+  m_PrefabInstance: {fileID: 8000301683810246521}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &8976195683525245802 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1411629533883442195, guid: 78c54e0823363b142b34bfe6dea9e85a,
     type: 3}
   m_PrefabInstance: {fileID: 8000301683810246521}
   m_PrefabAsset: {fileID: 0}

@@ -16,11 +16,20 @@ public class GameController : MonoBehaviour
 
 	public UnityEvent candleGrab;
 	public UnityEvent candlePlace;
+	public UnityEvent bookPickedUp;
+	public UnityEvent bookPlace;
+	public UnityEvent knifePickedUp;
+	public UnityEvent ritualCompleted;
 
 	enum Rooms {RitualRoom, Bathroom, LivingRoom, Library}
     enum RitualSiteItems {Candle, Knife, Book};
 
-    void Awake()
+	public Renderer elizabethPaintingRenderer;
+	public Texture[] paintings = new Texture[4];
+
+	public Material whiteGlow;
+
+	void Awake()
     {
         if (Instance == null)
             Instance = this;
@@ -35,6 +44,8 @@ public class GameController : MonoBehaviour
     void Start()
     {
         UnlockRoom(Rooms.Bathroom);
+
+		elizabethPaintingRenderer.material.mainTexture = paintings[0];
     }
 
     void Update()
@@ -136,6 +147,14 @@ public class GameController : MonoBehaviour
             candleGrab = new UnityEvent();
 		if (candlePlace == null)
 			candlePlace = new UnityEvent();
+		if (bookPickedUp == null)
+			bookPickedUp = new UnityEvent();
+		if (bookPlace == null)
+			bookPlace = new UnityEvent();
+		if (knifePickedUp == null)
+			knifePickedUp = new UnityEvent();
+		if (ritualCompleted == null)
+			ritualCompleted = new UnityEvent();
 	}
 
     public void ExtinguishCandles()
@@ -155,27 +174,49 @@ public class GameController : MonoBehaviour
 	{
 		candlePlaced = true;
 		candlePlace.Invoke();
+
+		elizabethPaintingRenderer.material.mainTexture = paintings[1];
 	}
 
 	public void BookPickedUp()
     {
-
+		bookPickedUp.Invoke();
     }
 
     public void BookPlaced()
     {
+		bookPlaced = true;
+		bookPlace.Invoke();
 
-    }
+		elizabethPaintingRenderer.material.mainTexture = paintings[2];
+	}
 
 	public void KnifePickedUp()
 	{
-
+		knifePickedUp.Invoke();
 	}
 
 	public void RitualCompleted()
     {
+		ritualComplete = true;
+		ritualCompleted.Invoke();
 
-    }
+		elizabethPaintingRenderer.material.mainTexture = paintings[3];
+	}
 
-    #endregion
+	public void DisableWhiteGlowEmission()
+	{
+		whiteGlow.DisableKeyword("_EMISSION");
+		whiteGlow.globalIlluminationFlags = MaterialGlobalIlluminationFlags.EmissiveIsBlack;
+		whiteGlow.SetColor("_EmissionColor", Color.black);
+	}
+
+	public void EnableWhiteGlowEmission()
+	{
+		whiteGlow.EnableKeyword("_EMISSION");
+		whiteGlow.globalIlluminationFlags = MaterialGlobalIlluminationFlags.RealtimeEmissive;
+		whiteGlow.SetColor("_EmissionColor", Color.white);
+	}
+
+	#endregion
 }

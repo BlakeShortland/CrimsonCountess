@@ -15,10 +15,7 @@ public class Candle : MonoBehaviour
 
 	void Awake()
 	{
-		myFlame = transform.GetChild(0).gameObject;
-		myFlameEmitter = myFlame.GetComponent<ParticleSystem>();
-		mySmokeEmitter = myFlame.transform.GetChild(1).gameObject.GetComponent<ParticleSystem>();
-		myLight = myFlame.transform.GetChild(0).gameObject;
+		
 	}
 
 	public virtual void Start()

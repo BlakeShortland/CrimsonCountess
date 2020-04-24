@@ -123,6 +123,11 @@ public class WheelchairMovementController : MonoBehaviour
 		touchpadTouchTimer -= Time.deltaTime;
 	}
 
+	void LateUpdate()
+	{
+		transform.localEulerAngles = new Vector3(0, transform.localEulerAngles.y, 0);
+	}
+
 	#region ManualWheelchair
 
 	void CalculateWheelSpeed()
