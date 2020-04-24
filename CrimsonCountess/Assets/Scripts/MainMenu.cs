@@ -7,11 +7,21 @@ public class MainMenu : MonoBehaviour
 {
     public void PlayGame()
 	{
-		SceneManager.LoadScene("GreyboxLevel");
+		StartCoroutine(LoadAsyncScene());
 	}
 
 	public void QuitGame()
 	{
 		Application.Quit();
+	}
+
+	IEnumerator LoadAsyncScene()
+	{
+		AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("GreyboxLevel");
+
+		while (!asyncLoad.isDone)
+		{
+			yield return null;
+		}
 	}
 }

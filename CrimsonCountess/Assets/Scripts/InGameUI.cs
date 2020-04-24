@@ -7,11 +7,15 @@ using VRTK;
 
 public class InGameUI : MonoBehaviour
 {
+	AudioController audioController;
+
 	public GameObject mainMenuCanvas;
 	public VRTK_ControllerEvents controllerEvents;
 
 	public void Start()
 	{
+		audioController = AudioController.Instance;
+
 		controllerEvents = (controllerEvents == null ? GetComponent<VRTK_ControllerEvents>() : controllerEvents);
 		if (controllerEvents == null)
 		{
@@ -24,7 +28,13 @@ public class InGameUI : MonoBehaviour
 
 	public void ReturnToMenu()
 	{
-		SceneManager.LoadScene("MainMenu");
+		audioController.StopAllCoroutines();
+		audioController.musicPlayer.Stop();
+		audioController.atmosphericSFX.Stop();
+
+		Application.Quit();
+
+		//SceneManager.LoadScene("MainMenu");
 	}
 
 	void ToggleMenu()
