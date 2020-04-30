@@ -194,7 +194,7 @@ PrefabInstance:
     - target: {fileID: 413997637796870200, guid: 718f04b966254ab46a6efa0b431f9ec1,
         type: 3}
       propertyPath: m_SpotAngle
-      value: 110
+      value: 130
       objectReference: {fileID: 0}
     - target: {fileID: 413997637796870200, guid: 718f04b966254ab46a6efa0b431f9ec1,
         type: 3}
