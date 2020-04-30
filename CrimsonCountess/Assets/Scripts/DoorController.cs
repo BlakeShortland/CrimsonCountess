@@ -10,13 +10,13 @@ public class DoorController : MonoBehaviour
 	public void OpenDoor()
 	{
 		transform.localPosition = openPosRot.pos;
-		transform.localRotation = openPosRot.rot;
+		transform.localRotation = Quaternion.Euler(0, openPosRot.rot, 0);
 	}
 
 	public void CloseDoor()
 	{
 		transform.localPosition = closedPosRot.pos;
-		transform.localRotation = closedPosRot.rot;
+		transform.localRotation = Quaternion.Euler(0, closedPosRot.rot, 0);
 	}
 }
 
@@ -24,5 +24,5 @@ public class DoorController : MonoBehaviour
 public class PosRot
 {
 	public Vector3 pos;
-	public Quaternion rot;
+	public float rot;
 }

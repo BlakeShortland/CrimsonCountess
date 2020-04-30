@@ -25,6 +25,6 @@ public class StoneSlab : MonoBehaviour
 		headsetFade.Fade(Color.black, 5f);
 		myAudioSource.Play();
 		audioController.PlaySFXDelayed(scream, 2f);
-		gameController.ReturnToMainMenuDelayed(5f);
+		gameController.ReturnToMainMenuDelayed(8f);
 	}
 }
