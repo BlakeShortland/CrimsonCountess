@@ -49,6 +49,8 @@ public class GameController : MonoBehaviour
         //UnlockRoom(Rooms.Bathroom);
 
 		elizabethPaintingRenderer.material.mainTexture = paintings[0];
+
+
     }
 
     void Update()
