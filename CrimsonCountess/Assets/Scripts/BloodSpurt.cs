@@ -9,6 +9,8 @@ public class BloodSpurt : MonoBehaviour
 	public ParticleSystem part;
 	public List<ParticleCollisionEvent> collisionEvents;
 
+	
+
 	void Start()
     {
 		gameController = GameController.Instance;
@@ -21,6 +23,14 @@ public class BloodSpurt : MonoBehaviour
 		if (other.name == "Stone Slab" && gameController.bookPlaced && gameController.candlePlaced)
 		{
 			gameController.RitualCompleted();
+		}
+	}
+
+	void Update()
+	{
+		if (part.isStopped)
+		{
+			Destroy(gameObject);
 		}
 	}
 }
