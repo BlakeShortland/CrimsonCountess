@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 3113863191259138177}
   - component: {fileID: 7870585973476064148}
   - component: {fileID: 8793336256477182486}
+  - component: {fileID: 3534933590029605065}
   m_Layer: 8
   m_Name: KnifeItem
   m_TagString: ItemKnife
@@ -214,10 +215,10 @@ BoxCollider:
   m_GameObject: {fileID: 8090420704071144967}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.045106888, y: 0.104874134, z: 0.3346119}
+  m_Center: {x: -0.0031404495, y: 0.00088095665, z: 0.028191566}
 --- !u!114 &3916221463656105818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -341,3 +342,17 @@ MonoBehaviour:
   onGrabCollisionDelay: 0
   destroyImmediatelyOnThrow: 1
   breakForce: 1500
+--- !u!64 &3534933590029605065
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8090420704071144967}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 7401353886334607404, guid: 9501acb067dbc1846a2a076c1472f3ae, type: 3}

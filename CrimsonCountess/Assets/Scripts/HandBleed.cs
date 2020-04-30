@@ -11,7 +11,12 @@ public class HandBleed : MonoBehaviour
 
     bool isOn = false;
 
-    public void TurnOn()
+	void Update()
+	{
+		//if()	
+	}
+
+	public void TurnOn()
     {
         isOn = true;
     }

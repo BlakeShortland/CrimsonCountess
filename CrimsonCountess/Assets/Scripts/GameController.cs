@@ -1,8 +1,11 @@
 ﻿/*
  * Script created by: Blake Shortland | Editor: [Null]
  */
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -34,7 +37,7 @@ public class GameController : MonoBehaviour
         if (Instance == null)
             Instance = this;
         else
-            Destroy(gameObject);
+            Destroy(Instance);
 
 		audioController = AudioController.Instance;
 
@@ -43,7 +46,7 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
-        UnlockRoom(Rooms.Bathroom);
+        //UnlockRoom(Rooms.Bathroom);
 
 		elizabethPaintingRenderer.material.mainTexture = paintings[0];
     }
@@ -216,6 +219,17 @@ public class GameController : MonoBehaviour
 		whiteGlow.EnableKeyword("_EMISSION");
 		whiteGlow.globalIlluminationFlags = MaterialGlobalIlluminationFlags.RealtimeEmissive;
 		whiteGlow.SetColor("_EmissionColor", Color.white);
+	}
+
+	public void ReturnToMainMenuDelayed(float delay)
+	{
+		StartCoroutine(ReturnToMainMenu(delay));
+	}
+
+	IEnumerator ReturnToMainMenu(float delay)
+	{
+		yield return new WaitForSeconds(delay);
+		SceneManager.LoadScene("MainMenu");
 	}
 
 	#endregion
