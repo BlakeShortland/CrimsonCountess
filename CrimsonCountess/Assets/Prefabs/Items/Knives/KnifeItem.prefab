@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2465137636954576554}
   - component: {fileID: 4069217397174361116}
-  - component: {fileID: 7603300569709466015}
   m_Layer: 8
   m_Name: Blade
   m_TagString: Untagged
@@ -45,20 +44,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.013136864, y: 0.02878666, z: 0.14240456}
   m_Center: {x: -0.00041532516, y: 0.0013408661, z: -0.053206444}
---- !u!114 &7603300569709466015
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2636622681599342095}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64568dbafc19a0641927a79d03f5b011, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  leftHandColliders: []
-  rightHandColliders: []
 --- !u!1 &3264328580622824998
 GameObject:
   m_ObjectHideFlags: 0
@@ -82,13 +67,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3264328580622824998}
-  m_LocalRotation: {x: 1, y: 0, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 0.102}
+  m_LocalRotation: {x: 0.7660445, y: 0, z: -0.6427876, w: 0}
+  m_LocalPosition: {x: 0.000000059602826, y: -0.0000004246831, z: 0.10200007}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7556464192324905008}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 180, y: 80, z: 0}
 --- !u!1 &4957025559496356155
 GameObject:
   m_ObjectHideFlags: 0
@@ -112,13 +97,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4957025559496356155}
-  m_LocalRotation: {x: 1, y: 0, z: 0, w: 0}
+  m_LocalRotation: {x: 0.7660445, y: 0, z: -0.6427876, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0.102}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7556464192324905008}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 180, y: 80, z: 0}
 --- !u!1 &8090420704071144967
 GameObject:
   m_ObjectHideFlags: 0
@@ -135,7 +120,7 @@ GameObject:
   - component: {fileID: 3113863191259138177}
   - component: {fileID: 7870585973476064148}
   - component: {fileID: 8793336256477182486}
-  - component: {fileID: 3534933590029605065}
+  - component: {fileID: 2069260586}
   m_Layer: 8
   m_Name: KnifeItem
   m_TagString: ItemKnife
@@ -152,7 +137,7 @@ Transform:
   m_GameObject: {fileID: 8090420704071144967}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -12.505, y: 3.909, z: -17.018}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_Children:
   - {fileID: 2465137636954576554}
   - {fileID: 6482255263980277851}
@@ -215,7 +200,7 @@ BoxCollider:
   m_GameObject: {fileID: 8090420704071144967}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.045106888, y: 0.104874134, z: 0.3346119}
   m_Center: {x: -0.0031404495, y: 0.00088095665, z: 0.028191566}
@@ -231,7 +216,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3abaf4521bf2344ea21ed3020b98eb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disableWhenIdle: 1
+  disableWhenIdle: 0
   allowedNearTouchControllers: 0
   allowedTouchControllers: 0
   ignoredColliders: []
@@ -284,10 +269,32 @@ MonoBehaviour:
       m_Calls: []
   OnGrab:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2069260586}
+        m_MethodName: GrabKnife
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnUngrab:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2069260586}
+        m_MethodName: UnGrabKnife
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnUse:
     m_PersistentCalls:
       m_Calls: []
@@ -341,18 +348,30 @@ MonoBehaviour:
   throwMultiplier: 1
   onGrabCollisionDelay: 0
   destroyImmediatelyOnThrow: 1
-  breakForce: 1500
---- !u!64 &3534933590029605065
-MeshCollider:
+  breakForce: 500
+--- !u!114 &2069260586
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8090420704071144967}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_Mesh: {fileID: 7401353886334607404, guid: 9501acb067dbc1846a2a076c1472f3ae, type: 3}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64568dbafc19a0641927a79d03f5b011, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftHandColliders:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  rightHandColliders:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}

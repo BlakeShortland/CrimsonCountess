@@ -34,4 +34,9 @@ public class HandBleed : MonoBehaviour
             }
         }
     }
+
+	public void bleedingFinished()
+	{
+		isBleeding = false;
+	}
 }

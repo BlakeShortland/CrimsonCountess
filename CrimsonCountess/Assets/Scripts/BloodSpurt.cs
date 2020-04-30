@@ -9,10 +9,12 @@ public class BloodSpurt : MonoBehaviour
 	public ParticleSystem part;
 	public List<ParticleCollisionEvent> collisionEvents;
 
-	
+	HandBleed parentHandBleed;
 
 	void Start()
     {
+		parentHandBleed = GetComponentInParent<HandBleed>();
+
 		gameController = GameController.Instance;
 
 		part = GetComponent<ParticleSystem>();
@@ -30,6 +32,7 @@ public class BloodSpurt : MonoBehaviour
 	{
 		if (part.isStopped)
 		{
+			parentHandBleed.bleedingFinished();
 			Destroy(gameObject);
 		}
 	}
