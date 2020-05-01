@@ -23,9 +23,7 @@ public class AudioController : MonoBehaviour
 		if (Instance == null)
 			Instance = this;
 		else
-			Destroy(gameObject);
-
-		DontDestroyOnLoad(gameObject);
+			Destroy(Instance);
 
 		gameController = GameController.Instance;
 	}
@@ -53,6 +51,12 @@ public class AudioController : MonoBehaviour
 	{
 		source.clip = clip;
 		source.Play();
+	}
+
+	public void PlaySFXDelayed(AudioClip clip, float delay)
+	{
+		atmosphericSFX.clip = clip;
+		atmosphericSFX.PlayDelayed(delay);
 	}
 
 	public void StopMusic()

@@ -189,12 +189,12 @@ PrefabInstance:
     - target: {fileID: 413997637796870200, guid: 718f04b966254ab46a6efa0b431f9ec1,
         type: 3}
       propertyPath: m_Intensity
-      value: 0.5
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 413997637796870200, guid: 718f04b966254ab46a6efa0b431f9ec1,
         type: 3}
       propertyPath: m_SpotAngle
-      value: 110
+      value: 130
       objectReference: {fileID: 0}
     - target: {fileID: 413997637796870200, guid: 718f04b966254ab46a6efa0b431f9ec1,
         type: 3}
@@ -225,6 +225,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_BounceIntensity
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 413997637796870200, guid: 718f04b966254ab46a6efa0b431f9ec1,
+        type: 3}
+      propertyPath: m_Range
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 718f04b966254ab46a6efa0b431f9ec1, type: 3}

@@ -11,7 +11,7 @@ public class HandBleed : MonoBehaviour
 
     bool isOn = false;
 
-    public void TurnOn()
+	public void TurnOn()
     {
         isOn = true;
     }
@@ -28,12 +28,15 @@ public class HandBleed : MonoBehaviour
             if (!isBleeding && isOn)
             {
                 isBleeding = true;
-                print(collider.gameObject);
+                //print(collider.gameObject);
                 GameObject bloodSpurtFX = Instantiate(bloodSpurt, transform.position, Quaternion.identity, transform);
                 bloodSpurtFX.transform.up = transform.up;
             }
         }
     }
 
-    
+	public void bleedingFinished()
+	{
+		isBleeding = false;
+	}
 }

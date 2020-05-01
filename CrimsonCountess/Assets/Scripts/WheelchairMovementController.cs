@@ -266,10 +266,10 @@ public class WheelchairMovementController : MonoBehaviour
 		Vector2 touchpadPosition = controllerEvents.GetTouchpadAxis();
 
 		float forwardSpeed = Mathf.Clamp(touchpadPosition.y, -.5f, 1f);
-        print("forward speed" + forwardSpeed);
+        //print("forward speed" + forwardSpeed);
 		Vector3 translate = (transform.forward * -1) * forwardSpeed * Time.deltaTime;
         //transform.Translate(translate);
-        Debug.Log("Translate: " + translate);
+        //Debug.Log("Translate: " + translate);
         self.MovePosition(transform.position + translate);
 
         float rotateSpeed = Mathf.Clamp(touchpadPosition.x * 3, -3f, 3f);

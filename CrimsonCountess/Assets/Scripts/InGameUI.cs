@@ -32,9 +32,9 @@ public class InGameUI : MonoBehaviour
 		audioController.musicPlayer.Stop();
 		audioController.atmosphericSFX.Stop();
 
-		Application.Quit();
+		//Application.Quit();
 
-		//SceneManager.LoadScene("MainMenu");
+		SceneManager.LoadScene("MainMenu");
 	}
 
 	void ToggleMenu()

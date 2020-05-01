@@ -85,7 +85,7 @@ Light:
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0.109375, y: 0.0390625, z: 0.0390625, w: -0.0390625}
@@ -402,7 +402,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8afa0b205791c9f4496bf2814aeac078, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  precisionGrab: 0
+  precisionGrab: 1
   rightSnapHandle: {fileID: 4248058355429727539}
   leftSnapHandle: {fileID: 4248058355429727539}
   throwVelocityWithAttachDistance: 0
